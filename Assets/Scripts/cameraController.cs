@@ -14,8 +14,6 @@ public class cameraController : MonoBehaviour {
     private GameObject player3;
     private float worldCenterY;
 
-    private bool canCallFunction;
-
     // Use this for initialization
     void Start()
     {
@@ -29,13 +27,11 @@ public class cameraController : MonoBehaviour {
         player2.GetComponent<Char2Controller>().enabled = false;
         player3.GetComponent<Char3Controller>().enabled = true;
         worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
-        //worldCenterY = GameObject.FindGameObjectWithTag("worldCenter").transform.rotation.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //worldCenterY = GameObject.FindGameObjectWithTag("worldCenter").transform.rotation.y;
         if (Input.GetKeyDown(KeyCode.Z))
         {
             rotateTween(120);
@@ -47,27 +43,6 @@ public class cameraController : MonoBehaviour {
         {
             rotateTween(-120);
             StartCoroutine(MyCoroutine());
-            //worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
-            ////worldCenterY = GameObject.FindGameObjectWithTag("worldCenter").transform.rotation.y;
-            //Debug.Log(worldCenterY);
-            //if (worldCenterY > -20.0f && worldCenterY < 20.0f)
-            //{
-            //    player1.GetComponent<Char1Controller>().enabled = false;
-            //    player2.GetComponent<Char2Controller>().enabled = true;
-            //    player3.GetComponent<Char3Controller>().enabled = false;
-            //}
-            //else if (worldCenterY > 100.0f && worldCenterY < 140.0f)
-            //{
-            //    player1.GetComponent<Char1Controller>().enabled = true;
-            //    player2.GetComponent<Char2Controller>().enabled = false;
-            //    player3.GetComponent<Char3Controller>().enabled = false;
-            //}
-            //else if (worldCenterY > 220.0f && worldCenterY < 260.0f)
-            //{
-            //    player1.GetComponent<Char1Controller>().enabled = true;
-            //    player2.GetComponent<Char2Controller>().enabled = false;
-            //    player3.GetComponent<Char3Controller>().enabled = false;
-            //}
         }
     }
 
@@ -91,12 +66,9 @@ public class cameraController : MonoBehaviour {
     IEnumerator MyCoroutine()
     {
         //This is a coroutine
-        //Debug.Log("time start");
-
         yield return new WaitForSeconds(1);
 
         worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
-        //worldCenterY = GameObject.FindGameObjectWithTag("worldCenter").transform.rotation.y;
         Debug.Log(worldCenterY);
         if (worldCenterY > -20.0f && worldCenterY < 20.0f)
         {
@@ -117,6 +89,5 @@ public class cameraController : MonoBehaviour {
             player3.GetComponent<Char3Controller>().enabled = false;
         }
         yield return new WaitForSeconds(1);
-        // Debug.Log("time end");
     }
 }
