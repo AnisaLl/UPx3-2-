@@ -9,7 +9,6 @@ public class cameraController : MonoBehaviour {
     private bool _isRotating = false;
     //private DisablePlayer _disablePlayer;
     private GameObject crystal;
-    private GameObject mainCamera;
     private Vector3 tCamerPos;
     // trigger altitude
     private float tTriggerAltitude = 30.0f;
@@ -18,19 +17,17 @@ public class cameraController : MonoBehaviour {
     void Start()
     {
         crystal = GameObject.FindGameObjectWithTag("crystal");
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         gameObject.transform.position = new Vector3(crystal.transform.position.x, -10, crystal.transform.position.z);
-        //mainCamera.transform.position = new Vector3(crystal.transform.position.x, 0, crystal.transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
         // camera's local position
-        tCamerPos = mainCamera.transform.localPosition;
+        tCamerPos = gameObject.transform.localPosition;
        
         if (tCamerPos.y < tTriggerAltitude && _isRotating == false) {
-            mainCamera.transform.Translate(0, Time.deltaTime * 1.0f,0);
+            gameObject.transform.Translate(0, Time.deltaTime * 1.0f,0);
         }
 
         
