@@ -6,8 +6,12 @@ public class cameraController : MonoBehaviour {
     public float rotateTime = 1.0f;
 
     private bool _isTweening = false;
+    private bool _isRotating = false;
     //private DisablePlayer _disablePlayer;
     private GameObject crystal;
+    private Vector3 tCamerPos;
+    // trigger altitude
+    private float tTriggerAltitude = 30.0f;
 
     private GameObject player1;
     private GameObject player2;
@@ -18,7 +22,7 @@ public class cameraController : MonoBehaviour {
     void Start()
     {
         crystal = GameObject.FindGameObjectWithTag("crystal");
-        gameObject.transform.position = new Vector3(crystal.transform.position.x, 0, crystal.transform.position.z);
+        gameObject.transform.position = new Vector3(crystal.transform.position.x, -10, crystal.transform.position.z);
         gameObject.transform.rotation = Quaternion.identity;
         player1 = GameObject.Find("player1");
         player2 = GameObject.Find("player2");
@@ -32,8 +36,17 @@ public class cameraController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        // camera's local position
+        tCamerPos = gameObject.transform.localPosition;
+       
+        if (tCamerPos.y < tTriggerAltitude && _isRotating == false) {
+            gameObject.transform.Translate(0, Time.deltaTime * 1.0f,0);
+        }
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            _isRotating = true;
             rotateTween(120);
             StartCoroutine(MyCoroutine());
             
@@ -41,6 +54,7 @@ public class cameraController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.X))
         {
+            _isRotating = true;
             rotateTween(-120);
             StartCoroutine(MyCoroutine());
         }
@@ -60,6 +74,7 @@ public class cameraController : MonoBehaviour {
     private void onColorTweenComplete()
     {
         _isTweening = false;
+        _isRotating = false;
         //_disablePlayer.enable();
     }
 
