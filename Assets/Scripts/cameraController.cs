@@ -12,11 +12,14 @@ public class cameraController : MonoBehaviour {
     private Vector3 tCamerPos;
     // trigger altitude
     private float tTriggerAltitude = 30.0f;
+    // camera speed
+    private float cameraSpeed = 0.8f;
 
     private GameObject player1;
     private GameObject player2;
     private GameObject player3;
     private float worldCenterY;
+   
 
     // Use this for initialization
     void Start()
@@ -41,7 +44,7 @@ public class cameraController : MonoBehaviour {
         tCamerPos = gameObject.transform.localPosition;
        
         if (tCamerPos.y < tTriggerAltitude && _isRotating == false) {
-            gameObject.transform.Translate(0, Time.deltaTime * 1.0f,0);
+            gameObject.transform.Translate(0, Time.deltaTime * cameraSpeed, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
