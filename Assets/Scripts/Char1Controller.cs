@@ -24,7 +24,7 @@ public class Char1Controller : MonoBehaviour
         moveDirection *= speed;
         if (controller.isGrounded)
         {
-            if (Input.GetButton("Jump"))
+            if (Input.GetKey(KeyCode.UpArrow))
             {
                 verticalVelocity = jumpSpeed;
             }
