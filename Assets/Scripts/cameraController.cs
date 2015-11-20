@@ -76,6 +76,12 @@ public class cameraController : MonoBehaviour {
             player2.GetComponent<Char2Controller>().enabled = false;
             player3.GetComponent<Char3Controller>().enabled = true;
         }
+        if (worldCenterY > 340.0f && worldCenterY < 380.0f)
+        {
+            player1.GetComponent<Char1Controller>().enabled = false;
+            player2.GetComponent<Char2Controller>().enabled = false;
+            player3.GetComponent<Char3Controller>().enabled = true;
+        }
         else if (worldCenterY > 100.0f && worldCenterY < 140.0f)
         {
             player1.GetComponent<Char1Controller>().enabled = false;
