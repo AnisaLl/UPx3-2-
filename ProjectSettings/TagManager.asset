@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - worldCenter
+  - crystal
   layers:
   - Default
   - TransparentFX
