@@ -4,6 +4,8 @@ using System.Collections;
 public class cameraController : MonoBehaviour {
 
     public float rotateTime = 1.0f;
+    // camera speed
+    public float cameraSpeed = 0.8f;
 
     private bool _isTweening = false;
     private bool _isRotating = false;
@@ -12,8 +14,8 @@ public class cameraController : MonoBehaviour {
     private Vector3 tCamerPos;
     // trigger altitude
     private float tTriggerAltitude = 30.0f;
-    // camera speed
-    private float cameraSpeed = 0.8f;
+  
+    
 
     private GameObject player1;
     private GameObject player2;

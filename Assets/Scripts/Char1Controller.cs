@@ -38,4 +38,12 @@ public class Char1Controller : MonoBehaviour
     {
         isFalling = false;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("trigger_f1_1"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }
