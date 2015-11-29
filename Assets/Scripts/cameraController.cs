@@ -29,12 +29,15 @@ public class cameraController : MonoBehaviour {
         crystal = GameObject.FindGameObjectWithTag("crystal");
         gameObject.transform.position = new Vector3(crystal.transform.position.x, -10, crystal.transform.position.z);
         gameObject.transform.rotation = Quaternion.identity;
-        player1 = GameObject.Find("player1");
-        player2 = GameObject.Find("player2");
-        player3 = GameObject.Find("player3");
-        player1.GetComponent<Char1Controller>().enabled = false;
-        player2.GetComponent<Char2Controller>().enabled = false;
-        player3.GetComponent<Char3Controller>().enabled = true;
+        player1 = GameObject.FindGameObjectWithTag("blue");
+        player2 = GameObject.FindGameObjectWithTag("red");
+        player3 = GameObject.FindGameObjectWithTag("green");
+        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
         worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
     }
 
@@ -92,27 +95,39 @@ public class cameraController : MonoBehaviour {
         Debug.Log(worldCenterY);
         if (worldCenterY > -20.0f && worldCenterY < 20.0f)
         {
-            player1.GetComponent<Char1Controller>().enabled = false;
-            player2.GetComponent<Char2Controller>().enabled = false;
-            player3.GetComponent<Char3Controller>().enabled = true;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
         }
         if (worldCenterY > 340.0f && worldCenterY < 380.0f)
         {
-            player1.GetComponent<Char1Controller>().enabled = false;
-            player2.GetComponent<Char2Controller>().enabled = false;
-            player3.GetComponent<Char3Controller>().enabled = true;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
         }
         else if (worldCenterY > 100.0f && worldCenterY < 140.0f)
         {
-            player1.GetComponent<Char1Controller>().enabled = false;
-            player2.GetComponent<Char2Controller>().enabled = true;
-            player3.GetComponent<Char3Controller>().enabled = false;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
         }
         else if (worldCenterY > 220.0f && worldCenterY < 260.0f)
         {
-            player1.GetComponent<Char1Controller>().enabled = true;
-            player2.GetComponent<Char2Controller>().enabled = false;
-            player3.GetComponent<Char3Controller>().enabled = false;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
         }
         yield return new WaitForSeconds(1);
     }
