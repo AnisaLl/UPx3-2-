@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GameOver : MonoBehaviour {
 
-    bool seen = false;
+    //bool seen = false;
+    bool gameOver = false;
 
     // Use this for initialization
     void Start () {
@@ -12,11 +13,18 @@ public class GameOver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GetComponent<Renderer>().isVisible)
-            seen = true;
-        if (seen && GetComponent<Renderer>().isVisible == false)
+      
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (gameOver == false)
         {
-            Debug.Log("game over");
+            if (collider.tag == "blue" || collider.tag == "red" || collider.tag == "green")
+            {
+                Debug.Log("Game over");
+                gameOver = true;
+            }
         }
     }
 }
