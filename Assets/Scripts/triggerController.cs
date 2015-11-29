@@ -31,26 +31,26 @@ public class triggerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        timer += Time.deltaTime;
+        //timer += Time.deltaTime;
 
-        if (Input.GetButton("Jump"))
-        {
-            trigger.SetActive(false);
-            Display();
-        }
+        //if (Input.GetButton("Jump"))
+        //{
+        //    //trigger.SetActive(false);
+        //    Display();
+        //}
 
-        if (timer >= effectsDisplayTime)
-        {
-            // ... disable the effects.
-            DisableEffects();
-        }
+        //if (timer >= effectsDisplayTime)
+        //{
+        //    // ... disable the effects.
+        //    DisableEffects();
+        //}
     }
 
     public void DisableEffects()
     {
         // Disable the line renderer and the light.
-        triggerLine.enabled = false;
-        //triggerLight.enabled = false;
+        //triggerLine.enabled = false;
+        triggerLight.enabled = false;
     }
 
     public void Display()
