@@ -13,7 +13,7 @@ public class cameraController : MonoBehaviour {
     private GameObject crystal;
     private Vector3 tCamerPos;
     // trigger altitude
-    private float tTriggerAltitude = 30.0f;
+    public float tTriggerAltitude = 30.0f;
   
     
 
