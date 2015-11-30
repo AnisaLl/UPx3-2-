@@ -14,8 +14,9 @@ public class cameraController : MonoBehaviour {
     private Vector3 tCamerPos;
     // trigger altitude
     public float tTriggerAltitude = 30.0f;
-  
-    
+
+    //game over controll
+    private GameOver Isgameover;
 
     private GameObject player1;
     private GameObject player2;
@@ -39,6 +40,7 @@ public class cameraController : MonoBehaviour {
         player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
         player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
         worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
+        Isgameover = GameObject.FindGameObjectWithTag("plane").GetComponent<GameOver>();
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class cameraController : MonoBehaviour {
         // camera's local position
         tCamerPos = gameObject.transform.localPosition;
        
-        if (tCamerPos.y < tTriggerAltitude && _isRotating == false) {
+        if (tCamerPos.y < tTriggerAltitude && _isRotating == false && !Isgameover.IsGameOver()) {
             gameObject.transform.Translate(0, Time.deltaTime * cameraSpeed, 0);
         }
 
