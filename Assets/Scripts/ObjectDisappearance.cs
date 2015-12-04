@@ -17,5 +17,6 @@ public class ObjectDisappearance : MonoBehaviour
         float alpha = color.a;
         color.a = Mathf.Lerp(alpha, 0, 0.01f);
         GetComponent<Renderer>().material.color = new Color(color.r, color.g, color.b, color.a);
+        GetComponent<BoxCollider>().enabled = false;
     }
 }

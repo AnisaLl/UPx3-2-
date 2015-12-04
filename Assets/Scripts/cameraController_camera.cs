@@ -7,6 +7,7 @@ public class cameraController_camera : MonoBehaviour {
 
     private bool _isTweening = false;
     private bool _isRotating = false;
+    private bool CharStarted = false;
     //private DisablePlayer _disablePlayer;
     private GameObject crystal;
 
@@ -35,12 +36,10 @@ public class cameraController_camera : MonoBehaviour {
         player1 = GameObject.FindGameObjectWithTag("blue");
         player2 = GameObject.FindGameObjectWithTag("red");
         player3 = GameObject.FindGameObjectWithTag("green");
-        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
-        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
-        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
-        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
-        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
-        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+
+        StartCoroutine(enablePlayersStart());
+        StartCoroutine(disablePlayersStart());
+       
         lastPlaying = player1;
         worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
         Isgameover = GameObject.FindGameObjectWithTag("plane").GetComponent<GameOver>();
@@ -54,10 +53,12 @@ public class cameraController_camera : MonoBehaviour {
         //targetPos = new Vector3(mainCamera.transform.position.x, lastPlaying.transform.position.y, mainCamera.transform.position.z);
         //iTween.LookTo(mainCamera, lastPlaying.transform.position, 0.2f);
 
-
         if (Input.GetKeyDown(KeyCode.Z))
         {
             lastPlaying.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+            lastPlaying.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            lastPlaying.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            //lastPlaying.GetComponent<Animator>().enabled = false;
             _isRotating = true;
             rotateTween(120);
             StartCoroutine(MyCoroutine());
@@ -67,6 +68,9 @@ public class cameraController_camera : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X))
         {
             lastPlaying.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+            lastPlaying.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+            lastPlaying.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            //lastPlaying.GetComponent<Animator>().enabled = false;
             _isRotating = true;
             rotateTween(-120);
             StartCoroutine(MyCoroutine());
@@ -99,11 +103,27 @@ public class cameraController_camera : MonoBehaviour {
         yield return new WaitForSeconds(1);
     }
 
+    IEnumerator enablePlayersStart()
+    {
+        //This is a coroutine
+        yield return new WaitForSeconds(0.10f);
+        enablePlayers();
+        yield return new WaitForSeconds(0.10f);
+    }
+
+    IEnumerator disablePlayersStart()
+    {
+        //This is a coroutine
+        yield return new WaitForSeconds(0.1f);
+        disablePlayers();
+        yield return new WaitForSeconds(0.1f);
+    }
+
     void jump()
     {
-         worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
+        worldCenterY = this.GetComponent<Transform>().eulerAngles.y;
         Debug.Log(worldCenterY);
-        if (worldCenterY > -20.0f && worldCenterY < 20.0f)
+        if ((worldCenterY > -20.0f && worldCenterY < 20.0f) || (worldCenterY > 340.0f && worldCenterY < 380.0f))
         {
             player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
             player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
@@ -111,20 +131,21 @@ public class cameraController_camera : MonoBehaviour {
             player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
             player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
             player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+
+            player1.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionX;
+            player1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            //player1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
+
+
+            //player1.GetComponent<Rigidbody>().constraints &= (~RigidbodyConstraints.FreezePositionX | ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ);
+
+            player1.GetComponent<Animator>().enabled = true;
+            player2.GetComponent<Animator>().enabled = false;
+            player3.GetComponent<Animator>().enabled = false;
             lastPlaying = player1;
            
         }
-        if (worldCenterY > 340.0f && worldCenterY < 380.0f)
-        {
-            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
-            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
-            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
-            player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
-            player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
-            player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
-            lastPlaying = player1;
-           
-        }
+       
         else if (worldCenterY > 100.0f && worldCenterY < 140.0f)
         {
             player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
@@ -133,6 +154,19 @@ public class cameraController_camera : MonoBehaviour {
             player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
             player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
             player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+
+            player3.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionX;
+            //player3.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY
+            player3.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ;
+
+            player3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            //player3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
+
+            //player3.GetComponent<Rigidbody>().constraints &= (~RigidbodyConstraints.FreezePositionX | ~RigidbodyConstraints.FreezePositionY | ~RigidbodyConstraints.FreezePositionZ);
+
+            player1.GetComponent<Animator>().enabled = false;
+            player2.GetComponent<Animator>().enabled = false;
+            player3.GetComponent<Animator>().enabled = true;
             lastPlaying = player3;
            
         }
@@ -144,9 +178,42 @@ public class cameraController_camera : MonoBehaviour {
             player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
             player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
             player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+
+            player2.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionX;
+            //player2.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY
+            player2.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ;
+
+            player2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            //player2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
+
+            //player2.GetComponent<Rigidbody>().constraints &= (~RigidbodyConstraints.FreezePositionX | ~RigidbodyConstraints.FreezePositionY | ~RigidbodyConstraints.FreezePositionZ);
+
+            player1.GetComponent<Animator>().enabled = false;
+            player2.GetComponent<Animator>().enabled = true;
+            player3.GetComponent<Animator>().enabled = false;
             lastPlaying = player2;
            
         }
+    }
+
+    void enablePlayers()
+    {
+        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+    }
+
+    void disablePlayers()
+    {
+        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = false;
+        player1.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+        player2.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+        player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
     }
 
     void cameraTrack(GameObject player)
