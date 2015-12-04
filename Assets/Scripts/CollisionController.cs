@@ -6,6 +6,7 @@ public class CollisionController : MonoBehaviour
     public string colliderName;
     public string playerName;
     public triggerController particle_blue;
+    private bool triggered = false;
 
     // Use this for initialization
     void Start()
@@ -30,17 +31,18 @@ public class CollisionController : MonoBehaviour
         if (collider.tag == playerName)
         {
             //Debug.Log("Entered here");
-            if (GameObject.FindGameObjectWithTag(colliderName) != null)
+            if (GameObject.FindGameObjectWithTag(colliderName) != null && !triggered)
             {
                 particle_blue.Display();
                 GameObject.FindGameObjectWithTag(colliderName).GetComponent<ObjectDisappearance>().enabled = true;
+                triggered = true;
                 StartCoroutine(MyCoroutine());
             }
         }
     }
 
 
-    //I delay the destruction of the object by 1 second so that it can firslty fade out and then it will be destroyed
+    //I delay the destruction of the object by 1 second so that it can firstly fade out and then it will be destroyed
     IEnumerator MyCoroutine()
     {
         //This is a coroutine
