@@ -33,10 +33,11 @@ public class CollisionController : MonoBehaviour
             //Debug.Log("Entered here");
             if (GameObject.FindGameObjectWithTag(colliderName) != null && !triggered)
             {
+                StartCoroutine(MyCoroutine());
                 particle_blue.Display();
                 GameObject.FindGameObjectWithTag(colliderName).GetComponent<ObjectDisappearance>().enabled = true;
-                triggered = true;
-                StartCoroutine(MyCoroutine());
+				GameObject.FindGameObjectWithTag(colliderName).SetActive(false);
+                triggered = true;   
             }
         }
     }
