@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class startMenuController : MonoBehaviour {
-     
+
+    public GameObject loadingimage;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,16 +15,22 @@ public class startMenuController : MonoBehaviour {
 	
 	}
 
-    public void showPanel_option(GameObject panel_option)
+    public void showCanvasPanel(GameObject CanvasPanel)
     {     
-        panel_option.SetActive(!panel_option.activeSelf);
+        CanvasPanel.SetActive(!CanvasPanel.activeSelf);
         //panel_main.SetActive(!panel_main.activeSelf);
+
+    }
+
+    public void enableScript(GameObject quad)
+    {
+        quad.GetComponent<ImageSequenceTextureArray>().enabled = true;
 
     }
 
     public void LoadScene(int level)
     {
-        //loadingImage.SetActive(true);
-        //Application.LoadLevel(level);
+        loadingimage.SetActive(true);
+        Application.LoadLevel(level);
     }
 }
