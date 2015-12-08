@@ -39,12 +39,13 @@ public class CollisionController2 : MonoBehaviour
         if (collider.tag == playerName)
         {
             //Debug.Log(collider.tag);
-         //   Resources.FindObjectsOfTypeAll<Transform?>
+            //Resources.FindObjectsOfTypeAll<Transform?>
             //Debug.Log(GetComponent<Transform>().Find(colliderName).tag);
             if (blockCollider != null)
             {
                 Debug.Log("Entered here");
                 blockCollider.SetActive(true);
+				gameObject.SetActive(false);
                 //particle_blue.Display();
                 //blockCollider.GetComponent<ObjectAppear>().enabled = true;
                 //GameObject.FindGameObjectWithTag(colliderName).GetComponent<ObjectAppear>().enabled = true;
