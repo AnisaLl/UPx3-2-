@@ -1213,6 +1213,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 638460534}
+        m_MethodName: playTransitionAudio
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 32b24a8d0096d714da3aaea312fc6196,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &822190334
@@ -2248,7 +2260,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c31cc0b5d06580346b9f6231b9c2fa6a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fa3b9aa45568fb849aacc04b45ac9768, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

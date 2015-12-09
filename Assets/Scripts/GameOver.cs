@@ -13,6 +13,7 @@ public class GameOver : MonoBehaviour {
     public Image dead_red;
     public Image dead_green;
 
+
     // Use this for initialization
     void Start () {
         CgameOver.enabled = false;
@@ -46,9 +47,9 @@ public class GameOver : MonoBehaviour {
         }
     }
 
-    public void FtryAgain() {
-        Application.LoadLevel(Application.loadedLevel);
-    }
+    //public void FtryAgain() {
+    //    Application.LoadLevel(Application.loadedLevel);
+    //}
 
     public bool IsGameOver()
     {

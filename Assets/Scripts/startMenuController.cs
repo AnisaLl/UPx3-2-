@@ -5,10 +5,13 @@ using UnityEngine.UI;
 public class startMenuController : MonoBehaviour {
 
     public GameObject loadingimage;
+    AudioSource StartSceneAudio;
 	// Use this for initialization
 	void Start () {
-	
-	}
+
+        StartSceneAudio = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,5 +35,11 @@ public class startMenuController : MonoBehaviour {
     {
         loadingimage.SetActive(true);
         Application.LoadLevel(level);
+    }
+
+    public void playTransitionAudio(AudioClip transition)
+    {
+        StartSceneAudio.clip = transition;
+        StartSceneAudio.Play();
     }
 }
