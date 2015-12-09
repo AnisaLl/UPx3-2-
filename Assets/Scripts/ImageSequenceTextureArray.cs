@@ -17,8 +17,11 @@ public class ImageSequenceTextureArray : MonoBehaviour
     //The number of frames the animation has  
     public int numberOfFrames;
 
+    public GameObject loadingimage;
+
     //The base name of the files of the sequence  
     private string baseName;
+
 
     void Awake()
     {
@@ -84,6 +87,7 @@ public class ImageSequenceTextureArray : MonoBehaviour
 
         else
         {
+            loadingimage.SetActive(true);
             Application.LoadLevel(1);
         }
 
