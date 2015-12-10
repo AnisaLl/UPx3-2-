@@ -2200,9 +2200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb315e374be64b4ca40250da5b0c555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateTime: .800000012
+  rotateTime: .999989986
   _isRotating: 0
-  heightDamping: .5
+  timeAdjustingCamera: .200000003
 --- !u!1 &326204671
 GameObject:
   m_ObjectHideFlags: 0

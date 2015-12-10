@@ -7,6 +7,7 @@ public class cameraController_camera : MonoBehaviour {
 
     private bool _isTweening = false;
     public bool _isRotating = false;
+    private bool _isAdjustingCamera = false;
     private bool CharStarted = false;
     //private DisablePlayer _disablePlayer;
     private GameObject crystal;
@@ -26,7 +27,8 @@ public class cameraController_camera : MonoBehaviour {
 
     Vector3 targetPos;
 
-    public float heightDamping = 0.5f;
+    public float timeAdjustingCamera = 0.5f;
+
 
 
     // Use this for initialization
@@ -51,9 +53,12 @@ public class cameraController_camera : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        cameraTrack(lastPlaying);
+        if (_isAdjustingCamera == false)
+        {
+            cameraTrack(lastPlaying);
+        }
         //cameraTrack_Lerp(lastPlaying);
-        
+
         //targetPos = new Vector3(mainCamera.transform.position.x, lastPlaying.transform.position.y, mainCamera.transform.position.z);
         //iTween.LookTo(mainCamera, lastPlaying.transform.position, 0.2f);
 
@@ -65,7 +70,8 @@ public class cameraController_camera : MonoBehaviour {
             //lastPlaying.GetComponent<Animator>().enabled = false;
             _isRotating = true;
             rotateTween(120);
-            StartCoroutine(MyCoroutine());
+            
+            //StartCoroutine(MyCoroutine());
             
         }
 
@@ -77,7 +83,7 @@ public class cameraController_camera : MonoBehaviour {
             //lastPlaying.GetComponent<Animator>().enabled = false;
             _isRotating = true;
             rotateTween(-120);
-            StartCoroutine(MyCoroutine());
+            //StartCoroutine(MyCoroutine());
         }
     }
 
@@ -98,7 +104,10 @@ public class cameraController_camera : MonoBehaviour {
         _isTweening = false;
         _isRotating = false;
         //_disablePlayer.enable();
-
+        jump();
+        _isAdjustingCamera = true;
+        Debug.Log("Rotate_isAdjustingCamera: " + _isAdjustingCamera);
+        cameraMove_Lerp(lastPlaying);
     }
 
     IEnumerator MyCoroutine()
@@ -222,7 +231,7 @@ public class cameraController_camera : MonoBehaviour {
         player3.GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
     }
 
-    void cameraTrack(GameObject player)
+    private void cameraTrack(GameObject player)
     {
         //Vector3 playerPos = 
         mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, player.transform.position.y, mainCamera.transform.position.z);
@@ -231,15 +240,44 @@ public class cameraController_camera : MonoBehaviour {
         currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);*/
     }
 
-    void cameraTrack_Lerp(GameObject player)
+    //void cameraTrack_Lerp(GameObject player)
+    //{
+    //    //Vector3 playerPos = 
+    //    //mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, player.transform.position.y, mainCamera.transform.position.z);
+    //    Debug.Log("cameraTrack_Lerp called");
+    //    Debug.Log("player available while rotation:     " + player.ToString());
+
+    //    float wantedHeight = player.transform.position.y;        
+    //    Vector3 targetPos = new Vector3(mainCamera.transform.position.x, wantedHeight, mainCamera.transform.position.z);
+    //    mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPos, heightDamping * Time.deltaTime);
+    //}
+
+    private void cameraMove_Lerp(GameObject player)
     {
-        //Vector3 playerPos = 
-        //mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, player.transform.position.y, mainCamera.transform.position.z);
-        Debug.Log("cameraTrack_Lerp called");
-        Debug.Log("player available while rotation:     " + player.ToString());
+        if(_isAdjustingCamera == true)
+        {
+            //_isAdjustingCamera = true;
+            //mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, player.transform.position.y, mainCamera.transform.position.z);
+            Debug.Log("cameraMove_Lerp called");
+            Debug.Log("player available while rotation:     " + player.ToString());
+
+            float wantedHeight = player.transform.position.y;
+            float currentHeight = mainCamera.transform.position.y;
+            
+            //Vector3 targetPos = new Vector3(mainCamera.transform.position.x, wantedHeight, mainCamera.transform.position.z);
+            Vector3 amount = new Vector3(0, wantedHeight - currentHeight, 0);
+            Debug.Log("amount" + amount);
+            //mainCamera.transform.position = Vector3.MoveTowards(mainCamera.transform.position, targetPos, heightDamping * Time.deltaTime);
+            //iTween.MoveAdd(mainCamera, amount, timeAdjustingCamera);
+            iTween.MoveAdd(mainCamera, iTween.Hash(iT.MoveAdd.time, timeAdjustingCamera, iT.MoveAdd.amount, amount, iT.MoveAdd.oncomplete, "onAdjustCameraComplete", iT.MoveAdd.oncompletetarget, gameObject));
+        }
+
+    }
+
+    private void onAdjustCameraComplete()
+    {
+        _isAdjustingCamera = false;
+        Debug.Log("_isAdjustingCamera: "+_isAdjustingCamera);
         
-        float wantedHeight = player.transform.position.y;        
-        Vector3 targetPos = new Vector3(mainCamera.transform.position.x, wantedHeight, mainCamera.transform.position.z);
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPos, heightDamping * Time.deltaTime);
     }
 }
