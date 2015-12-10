@@ -5,7 +5,7 @@ public class CollisionController2 : MonoBehaviour
 {
     public string colliderName;
     public string playerName;
-    public triggerController particle_blue;
+    public triggerController particle_red;
     private GameObject blockCollider;
 
     // Use this for initialization
@@ -46,7 +46,7 @@ public class CollisionController2 : MonoBehaviour
                 Debug.Log("Entered here");
                 blockCollider.SetActive(true);
 				gameObject.SetActive(false);
-                //particle_blue.Display();
+                particle_red.Display();
                 //blockCollider.GetComponent<ObjectAppear>().enabled = true;
                 //GameObject.FindGameObjectWithTag(colliderName).GetComponent<ObjectAppear>().enabled = true;
                // StartCoroutine(MyCoroutine());
