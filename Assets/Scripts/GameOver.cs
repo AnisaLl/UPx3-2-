@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnitySampleAssets.Characters.ThirdPerson;
 
 public class GameOver : MonoBehaviour {
 
     //bool seen = false;
     bool gameOver = false;
+    
     public Canvas CgameOver;
     public Button tryAgain;
     public Button mainMenu;
     public Image dead_blue;
     public Image dead_red;
     public Image dead_green;
+    AudioSource gameSceneAudio;
+    public AudioClip endAudio;
+
 
 
     // Use this for initialization
@@ -22,13 +27,15 @@ public class GameOver : MonoBehaviour {
         dead_blue.enabled = false;
         dead_red.enabled = false;
         dead_green.enabled = false;
+        gameSceneAudio = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+        
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
-          
+
+       
     }
 
     void OnTriggerEnter(Collider collider)
@@ -61,5 +68,9 @@ public class GameOver : MonoBehaviour {
         CgameOver.enabled = true;
         tryAgain.interactable = true;
         mainMenu.interactable = true;
+        gameSceneAudio.clip = endAudio;
+        gameSceneAudio.Play();
     }
+
+   
 }
