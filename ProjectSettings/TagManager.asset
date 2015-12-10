@@ -6,6 +6,21 @@ TagManager:
   tags:
   - worldCenter
   - crystal
+  - Icosphere_059
+  - camera2
+  - red
+  - Icosphere_048
+  - plane
+  - blue
+  - Icosphere_075
+  - Icosphere_040
+  - green
+  - Icosphere_037
+  - camera1
+  - Icosphere_052
+  - Icosphere_063
+  - trigger_f1_1
+  - pausedPanel
   layers:
   - Default
   - TransparentFX

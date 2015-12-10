@@ -917,7 +917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   folderName: Sequence
   imageSequenceName: storyboardframe
-  numberOfFrames: 18
+  numberOfFrames: 19
   loadingimage: {fileID: 1476902209}
 --- !u!23 &777702068
 MeshRenderer:
