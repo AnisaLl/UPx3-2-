@@ -10,7 +10,7 @@ public class AnimCameraController : MonoBehaviour {
     GameObject Animacamera;
     GameObject plane;
     public Canvas pausedCanvas;
-
+    private cameraController_camera cameraController_camera;
 
 
     void Awake()
@@ -24,7 +24,8 @@ public class AnimCameraController : MonoBehaviour {
     void Start()
     {
         plane = GameObject.FindGameObjectWithTag("plane");
-        
+        cameraController_camera = GameObject.Find("worldCenter").GetComponent<cameraController_camera>();
+
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class AnimCameraController : MonoBehaviour {
             disableCamera();
             pausedCanvas.enabled = true;
             plane.GetComponent<planeController>().enabled = true;
-
+            
         }
 
     }
