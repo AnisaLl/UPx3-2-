@@ -36,7 +36,7 @@ public class hasWin : MonoBehaviour {
             Debug.Log("hasWon_anime");
             Animacamera.SetActive(true);
             //anim.SetTrigger("gamewin");
-            Invoke("showwinCanvas", 2.2f);
+            Invoke("showwinCanvas", 4.5f);
         }
 
     }

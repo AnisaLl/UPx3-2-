@@ -1518,7 +1518,7 @@ RectTransform:
   m_Children:
   - {fileID: 630255205}
   m_Father: {fileID: 1704027131}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1661,7 +1661,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22459816, guid: dd74bc7119bf20e49ad982a48663c0a5, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459816, guid: dd74bc7119bf20e49ad982a48663c0a5, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -1884,8 +1884,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1476902210}
   - {fileID: 998639870}
+  - {fileID: 1476902210}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}

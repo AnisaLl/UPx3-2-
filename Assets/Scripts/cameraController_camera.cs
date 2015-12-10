@@ -6,7 +6,7 @@ public class cameraController_camera : MonoBehaviour {
     public float rotateTime = 1.0f;
 
     private bool _isTweening = false;
-    private bool _isRotating = false;
+    public bool _isRotating = false;
     private bool CharStarted = false;
     //private DisablePlayer _disablePlayer;
     private GameObject crystal;
@@ -109,7 +109,7 @@ public class cameraController_camera : MonoBehaviour {
         yield return new WaitForSeconds(1);
     }
 
-    IEnumerator enablePlayersStart()
+    public IEnumerator enablePlayersStart()
     {
         //This is a coroutine
         yield return new WaitForSeconds(0.10f);
@@ -117,7 +117,7 @@ public class cameraController_camera : MonoBehaviour {
         yield return new WaitForSeconds(0.10f);
     }
 
-    IEnumerator disablePlayersStart()
+    public IEnumerator disablePlayersStart()
     {
         //This is a coroutine
         yield return new WaitForSeconds(0.1f);
