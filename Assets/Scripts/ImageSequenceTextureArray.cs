@@ -47,7 +47,7 @@ public class ImageSequenceTextureArray : MonoBehaviour
     {
         
         //Start the 'PlayLoop' method as a coroutine with a 0.04 delay  
-        StartCoroutine("Play", 1.0f);
+        StartCoroutine("Play", 1.5f);
         //Set the material's texture to the current value of the frameCounter variable  
         goMaterial.mainTexture = this.texture;
     }
