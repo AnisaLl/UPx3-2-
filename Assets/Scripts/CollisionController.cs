@@ -8,10 +8,13 @@ public class CollisionController : MonoBehaviour
     public triggerController particle_blue;
     private bool triggered = false;
 
+	private GameObject flowerOpen;
+
     // Use this for initialization
     void Start()
     {
-        
+		flowerOpen = GameObject.FindGameObjectWithTag ("flowerOpen");
+		flowerOpen.SetActive (false);
      
     }
 
@@ -37,7 +40,8 @@ public class CollisionController : MonoBehaviour
                 particle_blue.Display();
                 GameObject.FindGameObjectWithTag(colliderName).GetComponent<ObjectDisappearance>().enabled = true;
 				GameObject.FindGameObjectWithTag(colliderName).SetActive(false);
-                triggered = true;   
+                triggered = true;
+				flowerOpen.SetActive(true);
             }
         }
     }
