@@ -35,25 +35,15 @@ public class CollisionController3 : MonoBehaviour {
 			//Debug.Log(GetComponent<Transform>().Find(colliderName).tag);
 			if (blockCollider != null)
 			{
-				//Debug.Log("Entered here");
-				//float step = speed*Time.deltaTime;
-				//Invoke("Effect", 4.0f);
-				//StartCoroutine(MyCoroutine());
 				Effect();
-				//StartCoroutine(MyCoroutine());
 				gameObject.SetActive(false);
-				//blockCollider.SetActive(true);
-				//particle_blue.Display();
-				//blockCollider.GetComponent<ObjectAppear>().enabled = true;
-				//GameObject.FindGameObjectWithTag(colliderName).GetComponent<ObjectAppear>().enabled = true;
-				// StartCoroutine(MyCoroutine());
 			}
 		}
 	}
 
 	void Effect()
 	{
-		blockCollider.transform.localPosition = Vector3.MoveTowards(blockCollider.transform.localPosition, new Vector3(0.07f, 1.53f, 0.72f), 0.2f);
+		blockCollider.transform.localPosition = new Vector3 (0.07f, 1.53f, 0.72f);
 	}
 
 	IEnumerator MyCoroutine()
@@ -64,11 +54,5 @@ public class CollisionController3 : MonoBehaviour {
 		yield return new WaitForSeconds(2.0f);
 	}
 
-	//void OnTriggerExit(Collider collider)
-	//{
-	//	if (collider.tag == playerName) {
-	//		gameObject.SetActive(false);
-	//	}
-	//}
 	
 }

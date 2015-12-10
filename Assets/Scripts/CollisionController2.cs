@@ -8,19 +8,21 @@ public class CollisionController2 : MonoBehaviour
     public triggerController particle_red;
     private GameObject blockCollider;
 
+	private GameObject flowerOpen;
+
     // Use this for initialization
 
     void Awake()
     {
         blockCollider = GameObject.FindGameObjectWithTag(colliderName);
         GameObject.FindGameObjectWithTag(colliderName).SetActive(false);
+
+		flowerOpen = GameObject.FindGameObjectWithTag("flowerOpen2");
+		flowerOpen.SetActive (false);
     }
 
     void Start()
     {
-
-        //GameObject.FindGameObjectWithTag(colliderName).SetActive(false);
-        //blockCollider = GameObject.FindGameObjectWithTag(colliderName);
     }
 
     // Update is called once per frame
@@ -38,18 +40,13 @@ public class CollisionController2 : MonoBehaviour
         
         if (collider.tag == playerName)
         {
-            //Debug.Log(collider.tag);
-            //Resources.FindObjectsOfTypeAll<Transform?>
-            //Debug.Log(GetComponent<Transform>().Find(colliderName).tag);
             if (blockCollider != null)
             {
                 Debug.Log("Entered here");
                 blockCollider.SetActive(true);
 				gameObject.SetActive(false);
                 particle_red.Display();
-                //blockCollider.GetComponent<ObjectAppear>().enabled = true;
-                //GameObject.FindGameObjectWithTag(colliderName).GetComponent<ObjectAppear>().enabled = true;
-               // StartCoroutine(MyCoroutine());
+				flowerOpen.SetActive(true);
             }
         }
     }
