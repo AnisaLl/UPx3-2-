@@ -20,6 +20,8 @@ public class planeController : MonoBehaviour {
     private ThirdPersonUserControl ThirdPersonUserControl_red;
     private ThirdPersonUserControl ThirdPersonUserControl_green;
 
+    private cameraController_camera cameraController_camera;
+
     // Use this for initialization
     void Start () {
         //Isgameover = GameObject.FindGameObjectWithTag("plane").GetComponent<GameOver>();
@@ -27,6 +29,7 @@ public class planeController : MonoBehaviour {
         ThirdPersonUserControl_blue = GameObject.FindGameObjectWithTag("blue").GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>();
         ThirdPersonUserControl_red = GameObject.FindGameObjectWithTag("red").GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>();
         ThirdPersonUserControl_green = GameObject.FindGameObjectWithTag("green").GetComponent<UnitySampleAssets.Characters.ThirdPerson.ThirdPersonUserControl>();
+        cameraController_camera = GameObject.Find("worldCenter").GetComponent<cameraController_camera>();
     }
 	
 	// Update is called once per frame
@@ -40,7 +43,7 @@ public class planeController : MonoBehaviour {
             win = true;
         }
 
-        if (tCamerPos.y < tTriggerAltitude && !win && pausedCanvas.active == false)
+        if (tCamerPos.y < tTriggerAltitude && !win && pausedCanvas.active == false && !cameraController_camera._isRotating)
         {
             gameObject.transform.Translate(0, Time.deltaTime * cameraSpeed, 0);
         }
