@@ -11,6 +11,7 @@ public class AnimCameraController : MonoBehaviour {
     GameObject plane;
     public Canvas pausedCanvas;
     private cameraController_camera cameraController_camera;
+	public bool isAnima = true;
 
 
     void Awake()
@@ -37,6 +38,7 @@ public class AnimCameraController : MonoBehaviour {
             disableCamera();
             pausedCanvas.enabled = true;
             plane.GetComponent<planeController>().enabled = true;
+			isAnima = false;
             
         }
 
