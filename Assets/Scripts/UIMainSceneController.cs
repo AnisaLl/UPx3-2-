@@ -4,10 +4,13 @@ using System.Collections;
 
 public class UIMainSceneController : MonoBehaviour {
 
+   
+
     
 	// Use this for initialization
 	void Start () {
-       
+
+        
 	}
 	
 	// Update is called once per frame
@@ -31,5 +34,7 @@ public class UIMainSceneController : MonoBehaviour {
     {
         CanvasPanel.SetActive(!CanvasPanel.activeSelf);
     }
+
+  
 
 }

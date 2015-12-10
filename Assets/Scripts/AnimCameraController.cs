@@ -8,22 +8,36 @@ public class AnimCameraController : MonoBehaviour {
     //game over controll
     //private bool hasWon;
     GameObject Animacamera;
+    GameObject plane;
+    public Canvas pausedCanvas;
+
+
 
     void Awake()
     {
         Animacamera = GameObject.Find("AnimCamera");
         anim = Animacamera.GetComponent<Animator>();
+        pausedCanvas.enabled = false;
     }
 
     // Use this for initialization
     void Start()
     {
-
+        plane = GameObject.FindGameObjectWithTag("plane");
+        
     }
 
     // Update is called once per frame
     void Update() {
 
+        //
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1|| Animacamera.active ==false)
+        {
+            disableCamera();
+            pausedCanvas.enabled = true;
+            plane.GetComponent<planeController>().enabled = true;
+
+        }
 
     }
 

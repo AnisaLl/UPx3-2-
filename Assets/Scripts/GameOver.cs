@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour {
     bool gameOver = false;
     
     public Canvas CgameOver;
+    public GameObject pausedCanvas;
     public Button tryAgain;
     public Button mainMenu;
     public Image dead_blue;
@@ -16,6 +17,7 @@ public class GameOver : MonoBehaviour {
     public Image dead_green;
     AudioSource gameSceneAudio;
     public AudioClip endAudio;
+
 
 
 
@@ -65,6 +67,8 @@ public class GameOver : MonoBehaviour {
 
     void FGameOver()
     {
+        pausedCanvas.SetActive(false);
+       
         CgameOver.enabled = true;
         tryAgain.interactable = true;
         mainMenu.interactable = true;

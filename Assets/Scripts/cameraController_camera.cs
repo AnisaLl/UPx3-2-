@@ -26,6 +26,8 @@ public class cameraController_camera : MonoBehaviour {
 
     Vector3 targetPos;
 
+    public float heightDamping = 0.5f;
+
 
     // Use this for initialization
     void Start()
@@ -50,6 +52,8 @@ public class cameraController_camera : MonoBehaviour {
     void Update()
     {
         cameraTrack(lastPlaying);
+        //cameraTrack_Lerp(lastPlaying);
+        
         //targetPos = new Vector3(mainCamera.transform.position.x, lastPlaying.transform.position.y, mainCamera.transform.position.z);
         //iTween.LookTo(mainCamera, lastPlaying.transform.position, 0.2f);
 
@@ -86,6 +90,7 @@ public class cameraController_camera : MonoBehaviour {
             Vector3 rot = new Vector3(0, amount, 0);
             iTween.RotateAdd(gameObject, iTween.Hash(iT.RotateAdd.time, rotateTime, iT.RotateAdd.amount, rot, iT.RotateAdd.easetype, iTween.EaseType.easeInOutSine, iT.RotateAdd.oncomplete, "onColorTweenComplete"));
         }
+        
     }
 
     private void onColorTweenComplete()
@@ -93,6 +98,7 @@ public class cameraController_camera : MonoBehaviour {
         _isTweening = false;
         _isRotating = false;
         //_disablePlayer.enable();
+
     }
 
     IEnumerator MyCoroutine()
@@ -223,6 +229,17 @@ public class cameraController_camera : MonoBehaviour {
         /*float wantedHeight = player.transform.position.y;
         float currentHeight = mainCamera.transform.position.y;
         currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);*/
+    }
+
+    void cameraTrack_Lerp(GameObject player)
+    {
+        //Vector3 playerPos = 
+        //mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, player.transform.position.y, mainCamera.transform.position.z);
+        Debug.Log("cameraTrack_Lerp called");
+        Debug.Log("player available while rotation:     " + player.ToString());
         
+        float wantedHeight = player.transform.position.y;        
+        Vector3 targetPos = new Vector3(mainCamera.transform.position.x, wantedHeight, mainCamera.transform.position.z);
+        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPos, heightDamping * Time.deltaTime);
     }
 }
